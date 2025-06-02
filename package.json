@@ -1,0 +1,23 @@
+{
+  "name": "qa-auto-engineer-javascript-project-87",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/TimoEvt/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/TimoEvt/qa-auto-engineer-javascript-project-87/actions)",
+  "main": "index.js",
+  "bin": {
+    "qa-auto-engineer-javascript-project-87": "bin/gendiff.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimoEvt/qa-auto-engineer-javascript-project-87.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TimoEvt/qa-auto-engineer-javascript-project-87/issues"
+  },
+  "homepage": "https://github.com/TimoEvt/qa-auto-engineer-javascript-project-87#readme"
+}
