@@ -5,7 +5,7 @@
   "description": "[![Actions Status](https://github.com/TimoEvt/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/TimoEvt/qa-auto-engineer-javascript-project-87/actions)",
   "main": "index.js",
   "bin": {
-    "qa-auto-engineer-javascript-project-87": "bin/gendiff.js"
+    "gendiff": "bin/gendiff.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
