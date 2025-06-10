@@ -1,21 +1,12 @@
 #!/usr/bin/env node
+import genDiff from '../src/genDiff.js';
 
-import { Command } from 'commander';
-import genDiff from '../src/index.js';
+const [,, filepath1, filepath2] = process.argv;
 
-const program = new Command();
+if (!filepath1 || !filepath2) {
+  console.error('Please provide two file paths');
+  process.exit(1);
+}
 
-program
-  .name('gendiff')
-  .description('Compares two configuration files and shows a difference.')
-  .version('1.0.0')
-  .arguments('<filepath1> <filepath2>')
-  .option('-f, --format <type>', 'output format')
-  .action((filepath1, filepath2, options) => {
-    // options.format доступен здесь, если понадобится
-    const diff = genDiff(filepath1, filepath2);
-    console.log(diff);
-  });
-
-program.parse(process.argv);
+console.log(genDiff(filepath1, filepath2));
 
