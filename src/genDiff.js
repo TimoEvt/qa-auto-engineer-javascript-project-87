@@ -13,10 +13,10 @@ const genDiff = (filepath1, filepath2) => {
     const val1 = data1[key];
     const val2 = data2[key];
 
-    if (!(key in data1)) {
+    if (!Object.hasOwn(data1, key)) {
       return `  + ${key}: ${val2}`;
     }
-    if (!(key in data2)) {
+    if (!Object.hasOwn(data2, key)) {
       return `  - ${key}: ${val1}`;
     }
     if (_.isEqual(val1, val2)) {
