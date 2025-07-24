@@ -1,3 +1,5 @@
+console.log('genDiff module loaded');
+
 import parseFile from './parser.js';
 import _ from 'lodash';
 
