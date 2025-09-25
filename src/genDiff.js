@@ -20,10 +20,6 @@ const genDiff = (filepath1, filepath2) => {
     const in1 = Object.hasOwn(obj1, key)
     const in2 = Object.hasOwn(obj2, key)
 
-import fs from 'node:fs'
-import path from 'node:path'
-import _ from 'lodash'
-
 // функция для парсинга JSON
 const parseFile = (filepath) => {
   const fullPath = path.resolve(process.cwd(), filepath)
