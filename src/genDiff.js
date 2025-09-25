@@ -56,11 +56,3 @@ const genDiff = (filepath1, filepath2) => {
 }
 
 export default genDiff
-
-    if (in1) return `  - ${key}: ${obj1[key]}`
-    if (in2) return `  + ${key}: ${obj2[key]}`
-    return []
-  })
-
-  return `{\n${lines.join('\n')}\n}`
-}
