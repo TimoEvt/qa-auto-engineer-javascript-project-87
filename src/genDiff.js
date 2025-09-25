@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import fs from 'node:fs'
 import path from 'node:path'
+/* eslint-enable no-unused-vars */
 import _ from 'lodash'
 
 const parseFile = (filepath) => {
@@ -29,7 +31,7 @@ const parseFile = (filepath) => {
   if (ext === '.json') return JSON.parse(data)
 
   throw new Error(`Unsupported file format: ${ext}`)
-};
+}
 
 // основная функция genDiff
 const genDiff = (filepath1, filepath2) => {
@@ -49,6 +51,15 @@ const genDiff = (filepath1, filepath2) => {
 
     if (in1) return `  - ${key}: ${obj1[key]}`
     if (in2) return `  + ${key}: ${obj2[key]}`
+
+const genDiff = (obj1, obj2) => {
+  const allKeys = _.union(Object.keys(obj1), Object.keys(obj2))
+  const lines = allKeys.map((key) => {
+    const in1 = _.has(obj1, key)
+    const in2 = _.has(obj2, key)
+    if (in1 && in2 && obj1[key] === obj2[key]) return `    ${key}: ${obj1[key]}`
+    if (in1 && !in2) return `  - ${key}: ${obj1[key]}`
+    if (!in1 && in2) return `  + ${key}: ${obj2[key]}`
     return []
   })
 
@@ -56,3 +67,4 @@ const genDiff = (filepath1, filepath2) => {
 }
 
 export default genDiff
+
