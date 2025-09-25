@@ -64,5 +64,3 @@ export default genDiff
 
   return `{\n${lines.join('\n')}\n}`
 }
-
-export default genDiff
