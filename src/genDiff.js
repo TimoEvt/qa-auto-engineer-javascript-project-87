@@ -4,24 +4,6 @@ import path from 'node:path'
 /* eslint-enable no-unused-vars */
 import _ from 'lodash'
 
-const parseFile = (filepath) => {
-  const fullPath = path.resolve(process.cwd(), filepath)
-  const ext = path.extname(fullPath)
-  const data = fs.readFileSync(fullPath, 'utf-8')
-
-  if (ext === '.json') return JSON.parse(data)
-  throw new Error(`Unsupported file format: ${ext}`)
-}
-
-const genDiff = (filepath1, filepath2) => {
-  const obj1 = parseFile(filepath1)
-  const obj2 = parseFile(filepath2)
-  const keys = _.sortBy(_.union(Object.keys(obj1), Object.keys(obj2)))
-
-  const lines = keys.flatMap((key) => {
-    const in1 = Object.hasOwn(obj1, key)
-    const in2 = Object.hasOwn(obj2, key)
-
 // функция для парсинга JSON
 const parseFile = (filepath) => {
   const fullPath = path.resolve(process.cwd(), filepath)
@@ -52,14 +34,6 @@ const genDiff = (filepath1, filepath2) => {
     if (in1) return `  - ${key}: ${obj1[key]}`
     if (in2) return `  + ${key}: ${obj2[key]}`
 
-const genDiff = (obj1, obj2) => {
-  const allKeys = _.union(Object.keys(obj1), Object.keys(obj2))
-  const lines = allKeys.map((key) => {
-    const in1 = _.has(obj1, key)
-    const in2 = _.has(obj2, key)
-    if (in1 && in2 && obj1[key] === obj2[key]) return `    ${key}: ${obj1[key]}`
-    if (in1 && !in2) return `  - ${key}: ${obj1[key]}`
-    if (!in1 && in2) return `  + ${key}: ${obj2[key]}`
     return []
   })
 
@@ -67,4 +41,5 @@ const genDiff = (obj1, obj2) => {
 }
 
 export default genDiff
+
 
