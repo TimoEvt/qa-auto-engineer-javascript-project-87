@@ -8,3 +8,7 @@
 ## Demo
 
 [![asciicast](https://asciinema.org/a/EVfbk6R48MUlUP6b1IFXf5HQp.svg)](https://asciinema.org/a/EVfbk6R48MUlUP6b1IFXf5HQp)
+
+## Demo (Plain format)
+
+[![asciicast](https://asciinema.org/a/QDfITzlloN8gIWOJRyFOiB4zx.svg)](https://asciinema.org/a/QDfITzlloN8gIWOJRyFOiB4zx)
