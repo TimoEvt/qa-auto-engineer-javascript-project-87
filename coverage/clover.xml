@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1759307893737" clover="3.2.0">
+  <project timestamp="1759307893737" name="All files">
+    <metrics statements="20" coveredstatements="18" conditionals="12" coveredconditionals="9" methods="3" coveredmethods="3" elements="35" coveredelements="30" complexity="0" loc="20" ncloc="20" packages="1" files="1" classes="1"/>
+    <file name="genDiff.js" path="/Users/timofey/qa-auto-engineer-javascript-project-87/src/genDiff.js">
+      <metrics statements="20" coveredstatements="18" conditionals="12" coveredconditionals="9" methods="3" coveredmethods="3"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="10" count="2" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
+      <line num="13" count="2" type="cond" truecount="1" falsecount="1"/>
+      <line num="14" count="0" type="stmt"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="20" count="1" type="stmt"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="24" count="1" type="stmt"/>
+      <line num="25" count="3" type="stmt"/>
+      <line num="26" count="3" type="stmt"/>
+      <line num="28" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="29" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="33" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="34" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="36" count="0" type="stmt"/>
+      <line num="39" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
