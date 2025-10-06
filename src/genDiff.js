@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
-import fs from 'node:fs'
-import path from 'node:path'
-/* eslint-enable no-unused-vars */
-import _ from 'lodash'
+import fs from 'fs'
+import path from 'path'
+import formatters from './formatters/index.js'
 
 // функция для парсинга JSON
 const parseFile = (filepath) => {
@@ -16,28 +14,27 @@ const parseFile = (filepath) => {
 }
 
 // основная функция genDiff
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
   const obj1 = parseFile(filepath1)
   const obj2 = parseFile(filepath2)
 
-  const keys = _.sortBy(_.union(Object.keys(obj1), Object.keys(obj2)))
+  const buildDiff = (o1, o2) => {
+    const keys = Array.from(new Set([...Object.keys(o1), ...Object.keys(o2)])).sort()
 
-  const lines = keys.flatMap((key) => {
-    const in1 = Object.hasOwn(obj1, key)
-    const in2 = Object.hasOwn(obj2, key)
+    return keys.map((key) => {
+      if (!(key in o1)) return { key, type: 'added', value: o2[key] }
+      if (!(key in o2)) return { key, type: 'removed', value: o1[key] }
+      if (o1[key] !== o2[key]) return { key, type: 'updated', oldValue: o1[key], newValue: o2[key] }
+      if (typeof o1[key] === 'object' && typeof o2[key] === 'object') {
+        return { key, type: 'nested', children: buildDiff(o1[key], o2[key]) }
+      }
+      return { key, type: 'unchanged', value: o1[key] }
+    })
+  }
 
-    if (in1 && in2) {
-      if (_.isEqual(obj1[key], obj2[key])) return `    ${key}: ${obj1[key]}`
-      return [`  - ${key}: ${obj1[key]}`, `  + ${key}: ${obj2[key]}`]
-    }
-
-    if (in1) return `  - ${key}: ${obj1[key]}`
-    if (in2) return `  + ${key}: ${obj2[key]}`
-
-    return []
-  })
-
-  return `{\n${lines.join('\n')}\n}`
+  const diffTree = buildDiff(obj1, obj2)
+  return formatters[formatName](diffTree)
 }
 
 export default genDiff
+

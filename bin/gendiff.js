@@ -1,11 +1,19 @@
 #!/usr/bin/env node
+
 import genDiff from '../src/genDiff.js'
 
-const [,, filepath1, filepath2] = process.argv
+const [,, file1, file2] = process.argv
 
-if (!filepath1 || !filepath2) {
-  console.error('Please provide two file paths')
+if (!file1 || !file2) {
+  console.error('Usage: gendiff file1 file2')
   process.exit(1)
 }
 
-console.log(genDiff(filepath1, filepath2))
+try {
+  const result = genDiff(file1, file2, 'json')
+  console.log(result)
+} catch (err) {
+  console.error('Error:', err.message)
+  process.exit(1)
+}
+
