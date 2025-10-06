@@ -12,3 +12,7 @@
 ## Demo (Plain format)
 
 [![asciicast](https://asciinema.org/a/QDfITzlloN8gIWOJRyFOiB4zx.svg)](https://asciinema.org/a/QDfITzlloN8gIWOJRyFOiB4zx)
+
+## Demo
+
+[![asciicast](https://asciinema.org/a/QPhNNhUgckOUbN4ie8ZuIJWV0.svg)](https://asciinema.org/a/QPhNNhUgckOUbN4ie8ZuIJWV0)
