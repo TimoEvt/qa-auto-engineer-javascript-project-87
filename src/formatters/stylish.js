@@ -1,37 +1,40 @@
 import _ from 'lodash'
 
-const indent = (depth) => ' '.repeat(depth * 4)
+const indent = (depth) => ' '.repeat(depth * 4 - 2)
 
 const stringify = (value, depth) => {
   if (_.isObject(value)) {
     const lines = Object.entries(value).map(
-      ([key, val]) => `${indent(depth + 1)}${key}: ${stringify(val, depth + 1)}`
-    );
-    return `{\n${lines.join('\n')}\n${indent(depth)}}`
+      ([key, val]) => `${indent(depth + 1)}  ${key}: ${stringify(val, depth + 1)}`
+    )
+    return `{\n${lines.join('\n')}\n${' '.repeat(depth * 4)}}`
   }
   return String(value)
 }
 
-const stylish = (diff, depth = 0) => {
+const stylish = (diff, depth = 1) => {
   const lines = diff.map((node) => {
-    const currentIndent = indent(depth)
     switch (node.type) {
       case 'added':
-        return `${currentIndent}+ ${node.key}: ${stringify(node.value, depth + 1)}`
+        return `${indent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`
       case 'removed':
-        return `${currentIndent}- ${node.key}: ${stringify(node.value, depth + 1)}`
+        return `${indent(depth)}- ${node.key}: ${stringify(node.value, depth)}`
       case 'unchanged':
-        return `${currentIndent}  ${node.key}: ${stringify(node.value, depth + 1)}`
+        return `${indent(depth)}  ${node.key}: ${stringify(node.value, depth)}`
+      case 'changed':
       case 'updated':
         return [
-          `${currentIndent}- ${node.key}: ${stringify(node.oldValue, depth + 1)}`,
-          `${currentIndent}+ ${node.key}: ${stringify(node.newValue, depth + 1)}`
+          `${indent(depth)}- ${node.key}: ${stringify(node.oldValue, depth)}`,
+          `${indent(depth)}+ ${node.key}: ${stringify(node.value, depth)}`
         ].join('\n')
+      case 'nested':
+        return `${indent(depth)}  ${node.key}: {\n${stylish(node.children, depth + 1)}\n${indent(depth)}  }`
       default:
         throw new Error(`Unknown type: ${node.type}`)
     }
   })
-  return `{\n${lines.join('\n')}\n${indent(depth)}}`
+
+  return `{\n${lines.join('\n')}\n}`
 }
 
 export default stylish
