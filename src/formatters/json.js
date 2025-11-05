@@ -1,4 +1,4 @@
-const transform = diff => diff.map(item => {
+const transform = diff => diff.map((item) => {
   switch (item.type) {
     case 'unchanged':
       return { key: item.key, type: 'unchanged', value: item.value }
