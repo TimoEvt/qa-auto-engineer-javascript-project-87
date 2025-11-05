@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import yaml from 'js-yaml'
-import formatters from './formatters/index.js'
+import getFormatter from './formatters/index.js'
 import _ from 'lodash'
 
 const getData = (filepath) => {
@@ -30,7 +30,8 @@ const genDiff = (filepath1, filepath2, format = 'stylish') => {
   const obj1 = getData(filepath1)
   const obj2 = getData(filepath2)
   const diff = buildDiff(obj1, obj2)
-  return formatters[format](diff)
+  const formatter = getFormatter(format)
+  return formatter(diff)
 }
 
 export default genDiff
