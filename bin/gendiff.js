@@ -1,31 +1,20 @@
 #!/usr/bin/env node
 
-import genDiff from '../src/genDiff.js'
+import { Command } from 'commander'
+import genDiff from '../src/index.js'
 
-const [,, ...args] = process.argv
+const program = new Command()
 
-let format = 'stylish'
-let files = []
+program
+  .name('gendiff')
+  .description('Compares two configuration files and shows a difference.')
+  .version('0.0.1')
+  .argument('<filepath1>')
+  .argument('<filepath2>')
+  .option('-f, --format <type>', 'output format', 'stylish')
+  .action((filepath1, filepath2, options) => {
+    const diff = genDiff(filepath1, filepath2, options.format)
+    console.log(diff)
+  })
 
-args.forEach((arg, i) => {
-  if (arg === '-f') {
-    format = args[i + 1]
-  } else if (i === 0 || args[i - 1] !== '-f') {
-    files.push(arg)
-  }
-})
-
-const [file1, file2] = files
-
-if (!file1 || !file2) {
-  console.error('Usage: gendiff [-f format] file1 file2')
-  process.exit(1)
-}
-
-try {
-  const result = genDiff(file1, file2, format)
-  console.log(result)
-} catch (err) {
-  console.error('Error:', err.message)
-  process.exit(1)
-}
+program.parse()
