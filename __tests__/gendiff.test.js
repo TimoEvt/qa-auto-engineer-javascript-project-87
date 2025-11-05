@@ -13,4 +13,3 @@ test('genDiff compares flat JSON objects correctly', () => {
   const result = genDiff(file1, file2, 'json')
   expect(result).toBe(expected)
 })
-
