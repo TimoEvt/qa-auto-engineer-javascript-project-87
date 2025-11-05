@@ -2,7 +2,7 @@ const plain = (diff) => {
   const iter = (data, path = '') => {
     return data
       .filter(item => item.type !== 'unchanged')
-      .map(item => {
+      .map(item) => {
         const property = path ? `${path}.${item.key}` : item.key
         switch (item.type) {
           case 'added':
