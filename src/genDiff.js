@@ -1,14 +1,14 @@
-import fs from 'fs';
-import path from 'path';
-import _ from 'lodash';
-import getFormatter from './formatters/index.js';
-import yaml from 'js-yaml';
+import fs from 'fs'
+import path from 'path'
+import _ from 'lodash'
+import getFormatter from './formatters/index.js'
+import yaml from 'js-yaml'
 
 // Парсер файлов JSON/YAML
 const parse = (filepath) => {
-  const fullPath = path.resolve(process.cwd(), filepath);
-  const ext = path.extname(fullPath).toLowerCase();
-  const data = fs.readFileSync(fullPath, 'utf-8');
+  const fullPath = path.resolve(process.cwd(), filepath)
+  const ext = path.extname(fullPath).toLowerCase()
+  const data = fs.readFileSync(fullPath, 'utf-8')
 
   switch (ext) {
     case '.json':
