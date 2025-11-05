@@ -11,4 +11,3 @@ Property 'verbose' was added with value: true`
   const result = genDiff(file1, file2, 'plain')
   expect(result).toBe(expected)
 })
-
