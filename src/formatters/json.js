@@ -1,5 +1,5 @@
-const transform = (diff) => diff.map(item => {
-  switch(item.type) {
+const transform = diff => diff.map(item => {
+  switch (item.type) {
     case 'unchanged':
       return { key: item.key, type: 'unchanged', value: item.value }
     case 'added':
@@ -15,7 +15,6 @@ const transform = (diff) => diff.map(item => {
   }
 })
 
-const json = (diff) => JSON.stringify(transform(diff), null, 2)
+const json = diff => JSON.stringify(transform(diff), null, 2)
 
 export default json
-
