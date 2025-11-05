@@ -31,4 +31,3 @@ const plain = (diff) => {
 }
 
 export default plain
-
